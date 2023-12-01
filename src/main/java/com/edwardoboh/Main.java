@@ -2,16 +2,21 @@ package com.edwardoboh;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import static com.edwardoboh.Main.Gender.*;
 
 public class Main {
     public static void main(String[] args) {
 
         List<Person> people = List.of(
-                new Person("edward", MALE),
+                new Person("edward", Gender.MALE),
                 new Person("jane", FEMALE),
                 new Person("john", MALE)
         );
+
+        System.out.println("\nUsing Imperative Approach");
 
         List<Person> males = new ArrayList<>();
 
@@ -24,6 +29,15 @@ public class Main {
         for (Person male: males){
             System.out.println(male);
         }
+
+        System.out.println("\nUsing Declarative Approach");
+
+        Predicate<Person> p = (pep) -> pep.gender.equals(MALE);
+        people.stream()
+                .filter(p)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
     }
 
     static class Person {
