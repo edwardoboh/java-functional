@@ -32,10 +32,9 @@ public class Main {
 
         System.out.println("\nUsing Declarative Approach");
 
-        Predicate<Person> p = (pep) -> pep.gender.equals(MALE);
+//        Predicate<Person> p = (pep) -> pep.gender.equals(MALE);
         people.stream()
-                .filter(p)
-                .collect(Collectors.toList())
+                .filter((person) -> person.gender.equals(MALE))
                 .forEach(System.out::println);
 
     }
